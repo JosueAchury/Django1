@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Electronics Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
+
+
+    <link rel="stylesheet" href="/static/css/index.css"> 
+</head>
+<body>
+  
+<div class="container">
+    
+    {% if messages %}
+        {% for messages in messages %}
+        {% if messages.tags == 'success'%}
+        <div class="alert alert-success">
+                {{messages}}
+        </div>
+        {% else %}
+        <div class="alert alert-danger">  
+            {{messages}}
+        </div> 
+            {% endif %}   
+        {% endfor %}
+    {% endif %}
+
+    
+<div class="todo">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registro' %}">Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrusel  -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+            
+            <div class="carousel-item active">
+                <img src="/static/img/Aprovecha.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/static/img/headphone.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/static/img/Pc.png" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1>Bienvenido a nuestra tienda de productos electrónicos</h1>
+        
+        <div class="row">
+            <!-- Info prducto  1 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/static/img/entretenimiento.jpg" class="card-img-top img-fluid rounded" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Entretenimiento</h5>
+                        <p class="card-text">Entra y disfruta de grandes ofertas</p>
+                        <a href="#" class="btn btn-primary">Ver productos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- info producto 2 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/static/img/Electrodomesticos.jpg" class="card-img-top img-fluid rounded" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Cuidado del hogar y electrodomesticos</h5>
+                        <p class="card-text">Consulta productos para el cuidado de tu hogar</p>
+                        <a href="#" class="btn btn-primary">Ver productos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- info producto 3 -->
+            <div class="col-md-4"> 
+                <div class="card">
+                    <img src="/static/img/Electrohogar.jpg" class="card-img-top img-fluid rounded" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Electrohogar</h5>
+                        <p class="card-text">Consulta productos para el cuidado de tu hogar...3.</p>
+                        <a href="#" class="btn btn-primary">Ver productos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <table id='tabla1' class='display'>
+        <thead>
+            <tr>
+                <th >name</th>
+                <th >desp</th>
+                <th >Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+                <tr>
+                    <td>T{{ producto.nombre }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.precio }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
+
+</div>
+</div>    
+    
+
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+
+    <!-- Scripts de Bootstrap (puedes usar una CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $(document).ready( function () {
+            $('#tabla1').DataTable();
+        } );
+    </script>
+
+
+
+</body>
+</html>
